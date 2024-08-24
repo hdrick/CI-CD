@@ -25,7 +25,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir('my-crud-be') {
+                dir('build') {
                     sh 'docker build -t my-crud-app .'
                 }
             }
