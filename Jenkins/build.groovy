@@ -7,7 +7,7 @@ pipeline {
                 // Checkout the CI-CD repository containing the build.groovy script
                 git(
                     url: 'git@github.com:hdrick/CI-CD.git',
-                    branch: 'main',
+                    branch: 'origin/develop',
                     credentialsId: 'ssh_dricks'
                 )
             }
