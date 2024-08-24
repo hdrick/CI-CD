@@ -7,7 +7,7 @@ pipeline {
                 // Checkout the CI-CD repository containing the build.groovy script
                 git(
                     url: 'git@github.com:hdrick/CI-CD.git',
-                    branch: 'develop',  
+                    branch: 'develop',
                     credentialsId: 'ssh_dricks'
                 )
             }
@@ -23,9 +23,9 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image'){
-            steps{
-                dir('my-crud-be'){
+        stage('Build Docker Image') {
+            steps {
+                dir('my-crud-be') {
                     sh 'docker build -t my-crud-app .'
                 }
             }
@@ -39,15 +39,12 @@ pipeline {
                 }
             }
         }
-
-        post {
-            always {
-                // Clean up actions if needed
-                echo 'Cleaning up...'
-            }
-        }
     }
 
+    post {
+        always {
+            // Clean up actions if needed
+            echo 'Cleaning up...'
+        }
+    }
 }
-
-
