@@ -25,17 +25,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir('build') {
-                    sh 'docker build -t my-crud-app .'
-                }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                dir('my-crud-be') {
-                    // Run your application tests here if needed
-                    sh 'docker run --rm my-crud-app ./run-tests.sh' // Adjust as needed
+                dir('/var/jenkins_home/workspace/build') {
+                    sh 'docker-compose up -d'
                 }
             }
         }
@@ -43,8 +34,9 @@ pipeline {
 
     post {
         always {
-            // Clean up actions if needed
-            echo 'Cleaning up..'
+            dir('/var/jenkins_home/workspace/build') {
+                sh 'docker-compose down'
+            }
         }
     }
 }
